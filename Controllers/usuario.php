@@ -1,1 +1,1 @@
-codigo bobo de sla soma
+mudanças nas linhas do usuario 
