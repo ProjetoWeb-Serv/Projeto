@@ -16,7 +16,7 @@
     <?php endif; ?>
 
     <form method="post">
-        <label>Email: <input type="text" name="email" value="<?= htmlspecialchars($email) ?>"></label><br><br>
+        <label>Email: <input type="text" name="email" value="<?= htmlspecialchars($email) ?? "" ?>"></label><br><br>
         <label>Senha: <input type="password" name="password"></label><br><br>
         <button type="submit">Entrar</button>
     </form>
