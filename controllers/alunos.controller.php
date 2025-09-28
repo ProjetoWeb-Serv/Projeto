@@ -3,7 +3,7 @@
     if($acao == 'listar'){
 
         $acao = 'alunos';
-
+        
     }else if($acao == 'cadastrar'){
 
         $acao = 'inserir_aluno';
@@ -23,12 +23,7 @@
             }
         }
 
-        echo 'Aluno inserido com sucesso!';
-        echo $_SESSION['alunos'][0]['nome_aluno'];
-        echo $_SESSION['alunos'][0]['data_nascimento'];
-
         header('Location: /alunos');
-        $acao = 'alunos';
     }
 
     require_once("views.php");

@@ -5,8 +5,14 @@
         <th>Data Nascimento</th>
     </tr>
 
-    <?php        
-        echo '<tr><td>Enzo Mcqueen</td>';    //coloquem a implementação do mockup aqui de algum jeito lindões
-        echo '<td>05/02/2005</td></tr>';
+    <?php
+        if(isset($_SESSION['alunos'])){
+            foreach($_SESSION['alunos'] as $aluno){
+                echo '<tr><td>'.$aluno['nome_aluno'].'</td>';
+                echo '<td>'.$aluno['data_nascimento'].'</td></tr>';
+            }
+        }else{
+            echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td>,</tr>';
+        }
     ?>
 </table>
