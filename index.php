@@ -7,45 +7,22 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
-    
-    <div id="conteudo" class="container">
-        <?php 
+      
+      <?php 
 
-        $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 'home';
+        $pagina = substr($_SERVER['REQUEST_URI'], 1);  
+        $rotas = explode('/', $pagina);
+        
+        $recurso = empty($rotas[0]) ? 'home' : $rotas[0];
 
-        switch ($pagina) {
-            case 'home':
-                include 'views/home.php';
-                break;
+        $controller = "controllers/$recurso.controller.php";
 
-            case 'cursos':
-                include 'views/cursos.php';
-                break;
+        if(file_exists($controller)){
+            require($controller);
+        } else {
 
-            case 'inserir_curso':
-                include 'views/inserir_curso.php';
-                break;
-
-            case 'alunos':
-                include 'views/alunos.php';
-                break;
-
-            case 'inserir_aluno':
-                include 'views/inserir_aluno.php';
-                break;
-
-            case 'matriculas':
-                include 'views/matriculas.php';
-                break;
-
-            default:
-                echo "<h2>Página não encontrada!</h2>";
-                break;
+            require("controllers/404.controller.php");
         }
         ?>
-    </div>
-
-    <?php include 'footer.php'; ?>
 </body>
 </html>
