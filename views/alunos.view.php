@@ -16,7 +16,7 @@
                 echo '<td>'.$aluno['data_nascimento'].'</td></tr>';
             }
         }else{
-            echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td>,</tr>';
+            echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td></tr>';
         }
     ?>
 </table>

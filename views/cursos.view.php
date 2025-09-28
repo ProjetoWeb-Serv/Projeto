@@ -16,7 +16,7 @@
                 echo '<td>'.$curso['carga_horaria'].'</td></tr>';
             }
         }else{
-            echo '<tr><td>Ainda não foi cadastrado nenhum curso</td>,</tr>';
+            echo '<tr><td>Ainda não foi cadastrado nenhum curso</td></tr>';
         }
     ?>
 </table>

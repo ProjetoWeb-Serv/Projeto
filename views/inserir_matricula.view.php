@@ -1,22 +1,23 @@
-<?php
-
-// façam aparecer o mockup das tabelas inserir alunos e cursos, aparecerem em uma unica tabela, como a que está de exemplo
-// façam um botão adicionar matricula
-// façam algo como:
-?>
 <h1>Inserir nova matrícula</h1>
-<p>Selecione o aluno</p>
 
-<form>
-    <select name="" id="">
-        <option value="">
-
-        </option>
+<form id="formulario_matriculas" method="POST" action="/matriculas/gravar">
+    <p>Selecione o aluno</p>
+    <select id="aluno" name="nome_aluno">
+            <?php 
+            foreach($_SESSION['alunos'] as $aluno){
+                echo '<option value="'.$aluno['nome_aluno'].'">' . $aluno['nome_aluno'] . '</option>';
+            }
+            ?> 
     </select>
-                                                                    <?php // façam form com select no mockup  ?>
-    <select name="" id="">                                          <?php // é igual os outros, porém ele capta o que está na array seleciona e depois manda o submit cadastrando (qualquer coisa o leo sabe oq eu to falando)  ?>
-        <option value="">
-
-        </option>
+    <p>Selecione o curso</p>
+    <select id="curso" name="nome_curso">
+            <?php 
+            foreach($_SESSION['cursos'] as $curso){
+                echo '<option value="'.$curso['nome_curso'].'">' . $curso['nome_curso'] . '</option>';
+            }
+            ?> 
     </select>
+    <div class="button_aluno">
+        <button type="submit">Inserir matrícula</button>
+    </div>
 </form>
