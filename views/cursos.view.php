@@ -1,4 +1,8 @@
-<a href="/cursos/cadastrar">Inserir novo curso</a>
+<div class="button_curso">
+    <a href="/cursos/cadastrar">
+        <button>Inserir novo curso</button>
+    </a>
+</div>
 <table style="border: 1px solid #ccc; width: 100%">
     <tr>
         <th>Nome curso</th>

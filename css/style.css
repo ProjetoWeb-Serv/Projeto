@@ -72,3 +72,18 @@ footer {
     width: 960px;
     max-width: 100%;
 } 
+
+.button_aluno, .button_curso {
+    margin-top: 15px;
+    margin-left: 50px;
+}
+
+.button_aluno button, .button_curso button {
+    background-color: #06B6D4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
