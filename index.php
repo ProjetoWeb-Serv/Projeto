@@ -15,6 +15,8 @@
         
         $recurso = empty($rotas[0]) ? 'home' : $rotas[0];
 
+        $acao = $rotas[1] ?? 'listar';
+
         $controller = "controllers/$recurso.controller.php";
 
         if(file_exists($controller)){

@@ -8,22 +8,3 @@
 <div id="message">
     
 </div>
-
-<script>
-    document.getElementById("formulario_alunos").addEventListener("submit",async function(e) {
-        e.preventDefault() 
-        const formData = new FormData (this)
-        try {
-            const response = await fetch ("/web_client_t1/controller/control_inserir_aluno.php", {
-                method:"POST", body:formData
-            })
-            const result = await response.text()
-            document.getElementById("message").innerHTML = result
-            setTimeout(() => {
-                document.getElementById("message").innerHTML = ""
-            }, 5000);
-        } catch (error) {
-            document.getElementById("message").innerHTML = "Falha ao cadastrar aluno ! :("
-        }
-    });
-</script>
