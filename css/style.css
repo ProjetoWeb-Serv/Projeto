@@ -110,7 +110,7 @@ footer {
     font-size: 16px;
 }
 
-.aluno_title, .curso_title{
+.aluno_title, .curso_title, .matricula_title{
     text-align: center;
     margin-bottom: 20px;
     margin-top: 30px;
@@ -145,4 +145,39 @@ tr:hover {
 
 td:first-child {
     font-weight: 500;
+}
+
+.select_aluno, .select_curso {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+#aluno, #curso {
+    width: 20%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+#aluno:hover, #curso:hover {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+#aluno:focus, #curso:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.4);
+}
+
+.select_div {
+    margin-left: 40px;
 }
