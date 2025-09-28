@@ -73,7 +73,7 @@ footer {
     max-width: 100%;
 } 
 
-.button_aluno, .button_curso {
+.button_aluno, .button_curso{
     margin-top: 15px;
     margin-left: 50px;
 }
@@ -86,4 +86,26 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.aluno_nome, .aluno_nascimento, .curso_nome, .curso_carga_horaria {
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 50px;
+}
+
+.aluno_nome input, .aluno_nascimento input, .curso_nome input, .curso_carga_horaria input{
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.aluno_title, .curso_title{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
