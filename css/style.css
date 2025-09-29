@@ -181,3 +181,18 @@ td:first-child {
 .select_div {
     margin-left: 40px;
 }
+
+.title_home {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    font-size: 36px;
+    color: #06B6D4;
+}
+
+.subtitle_home {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+}
