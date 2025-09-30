@@ -5,15 +5,17 @@
 </div>
 <table style="border: 1px solid #ccc; width: 100%">
     <tr>
-        <th>Nome aluno</th>
-        <th>Nome curso</th>
+        <th>Nome Aluno</th>
+        <th>Nome Curso</th>
+        <th>Carga Horária</th>
     </tr>
 
     <?php
+
     if(isset($_SESSION['matriculas'])){
             foreach($_SESSION['matriculas'] as $aluno){
                 echo '<tr><td>'.$aluno['nome_aluno'].'</td>';
-                echo '<td>'.$aluno['nome_curso'].'</td></tr>';
+                echo '<td>'.$aluno['nome_curso'].'</td>';
             }
         }else{
             echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td></tr>';
