@@ -196,3 +196,20 @@ td:first-child {
     font-size: 20px;
     color: #333;
 }
+
+.sucess_login {
+    color: green;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.error_login {
+    color: red;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0px;
+}
