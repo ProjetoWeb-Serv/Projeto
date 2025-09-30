@@ -9,7 +9,7 @@
             <select id="aluno" name="nome_aluno">
                     <?php 
                     foreach($_SESSION['alunos'] as $aluno){
-                        echo '<option value="'.$aluno['nome_aluno'].'">' . $aluno['nome_aluno'] . '</option>';
+                        echo '<option value="'.$aluno->__get('nome_aluno').'">' . $aluno->__get('nome_aluno') . '</option>';
                     }
                     ?> 
             </select>
@@ -19,7 +19,7 @@
             <select id="curso" name="nome_curso">
                     <?php 
                     foreach($_SESSION['cursos'] as $curso){
-                        echo '<option value="'.$curso['nome_curso'].'">' . $curso['nome_curso'] . '</option>';
+                        echo '<option value="'.$curso->__get('nome_curso').'">' . $curso->__get('nome_curso') . '</option>';
                     }
                     ?> 
             </select>
