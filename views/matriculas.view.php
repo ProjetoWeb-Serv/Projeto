@@ -11,11 +11,10 @@
     </tr>
 
     <?php
-
     if(isset($_SESSION['matriculas'])){
-            foreach($_SESSION['matriculas'] as $aluno){
-                echo '<tr><td>'.$aluno['nome_aluno'].'</td>';
-                echo '<td>'.$aluno['nome_curso'].'</td>';
+            foreach($_SESSION['matriculas'] as $matricula){
+                echo '<tr><td>'.$matricula['nome_aluno'].'</td>';
+                echo '<td>'.$matricula['nome_curso'].'</td></tr>';
             }
         }else{
             echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td></tr>';

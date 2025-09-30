@@ -1,4 +1,7 @@
 <?php 
+
+    require_once 'models/Aluno.php';
+
     session_start();
     
     $pagina = substr($_SERVER['REQUEST_URI'], 1);  

@@ -5,15 +5,18 @@
 </div>
 <table style="border: 1px solid #ccc; width: 100%">
     <tr>
+        <th>Id do Aluno</th>
         <th>Nome aluno</th>
         <th>Data Nascimento</th>
     </tr>
 
     <?php
+        require_once('models/Aluno.php');
         if(isset($_SESSION['alunos'])){
             foreach($_SESSION['alunos'] as $aluno){
-                echo '<tr><td>'.$aluno['nome_aluno'].'</td>';
-                echo '<td>'.$aluno['data_nascimento'].'</td></tr>';
+                echo '<tr><td>'.$aluno->id.'</td>';
+                echo '<td>'.$aluno->nome_aluno.'</td>';
+                echo '<td>'.$aluno->data_nascimento.'</td></tr>';
             }
         }else{
             echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td></tr>';

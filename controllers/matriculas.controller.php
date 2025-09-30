@@ -1,5 +1,5 @@
 <?php
-
+    
     if($acao == 'listar'){
 
         $acao = 'matriculas';
