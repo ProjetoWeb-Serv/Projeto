@@ -1,5 +1,5 @@
 <?php
-
+    
     if($acao == 'listar'){
 
         $acao = 'cursos';
@@ -9,8 +9,11 @@
     }else if($acao == 'gravar'){
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            require_once('models/Curso.php');
-
+            require_once __DIR__ . '/../models/Curso.php'; 
+            
+            if(!isset($_SESSION['cursos'])){
+                $_SESSION['cursos'] = [];
+            }
             if(!isset($_SESSION['curso_id'])){
                 $_SESSION['curso_id'] = 1;
             }
@@ -21,8 +24,8 @@
             $Curso->__set('id', $_SESSION['curso_id']);
             if($Curso->__get('nome_curso') != '' && $Curso->__get('carga_horaria') != 0){
                    $_SESSION['cursos'][] = $Curso;
+                   $_SESSION['curso_id']++;
                }
-           $_SESSION['curso_id']++;
         }
 
 

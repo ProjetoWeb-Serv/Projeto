@@ -1,5 +1,5 @@
 <?php 
-
+    require_once 'models/Curso.php';
     require_once 'models/Aluno.php';
 
     session_start();
