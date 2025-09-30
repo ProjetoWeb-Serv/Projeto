@@ -1,5 +1,5 @@
 <?php
-    
+
     if($acao == 'listar'){
 
         $acao = 'matriculas';
@@ -24,6 +24,9 @@
         }
 
         header('Location: /matriculas');
+    }else{
+
+        $acao = '404';
     }
 
     require_once("views.php");

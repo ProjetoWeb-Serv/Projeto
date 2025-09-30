@@ -22,6 +22,9 @@
         }
 
         header('Location: /cursos');
+    }else{
+
+        $acao = '404';
     }
 
     require_once("views.php");

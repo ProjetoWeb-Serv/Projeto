@@ -29,6 +29,9 @@
         }
 
         header('Location: /alunos');
+    }else{
+
+        $acao = '404';
     }
 
     require_once("views.php");
