@@ -7,7 +7,7 @@
 
         </div>
         <div class="curso_carga_horaria">
-            <input type="text" name="carga_horaria" placeholder="Insira a carga horária">
+            <input type="number" name="carga_horaria" placeholder="Insira a carga horária do curso (total de horas)">
             
         </div>
         <div class="button_curso">
