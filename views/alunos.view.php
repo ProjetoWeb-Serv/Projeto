@@ -5,7 +5,7 @@
 </div>
 <table style="border: 1px solid #ccc; width: 100%">
     <tr>
-        <th>Id do Aluno</th>
+        <th>Registro Aluno</th>
         <th>Nome aluno</th>
         <th>Data Nascimento</th>
     </tr>

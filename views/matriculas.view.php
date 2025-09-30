@@ -12,9 +12,12 @@
 
     <?php
     if(isset($_SESSION['matriculas'])){
+        require_once __DIR__ . '/../models/Matricula.php';
             foreach($_SESSION['matriculas'] as $matricula){
-                echo '<tr><td>'.$matricula['nome_aluno'].'</td>';
-                echo '<td>'.$matricula['nome_curso'].'</td></tr>';
+
+                echo '<tr><td>'.$matricula->__get('nome_aluno').'</td>';
+                echo '<td>'.$matricula->buscarCursoNome().'</td>';
+                echo '<td>'. $matricula->buscarCargaHoraria(). '</td></tr>';
             }
         }else{
             echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td></tr>';

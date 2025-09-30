@@ -1,6 +1,7 @@
 <?php 
-
+    require_once 'models/Curso.php';
     require_once 'models/Aluno.php';
+    require_once 'models/Matricula.php';
 
     session_start();
     
