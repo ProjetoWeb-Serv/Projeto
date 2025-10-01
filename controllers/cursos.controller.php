@@ -20,7 +20,7 @@
                 $_SESSION['cursos'] = [];
             }
             if(!isset($_SESSION['curso_id'])){
-                $_SESSION['curso_id'] = 1;
+                $_SESSION['curso_id'] = 6;
             }
             
             $Curso = new Curso();

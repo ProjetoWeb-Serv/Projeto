@@ -19,7 +19,7 @@
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
             if (!isset($_SESSION['aluno_id'])) {
-                $_SESSION['aluno_id'] = 1;
+                $_SESSION['aluno_id'] = 6;
             }
 
             $Aluno = new Aluno();
@@ -43,7 +43,7 @@
         if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
             $deletado = false;
-            
+
             foreach($_SESSION['alunos'] as $index => $aluno){
                 if($aluno->__get('id') == $_GET['id']){
                     foreach($_SESSION['matriculas'] as $matricula){

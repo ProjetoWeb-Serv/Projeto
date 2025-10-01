@@ -20,7 +20,7 @@
             require_once __DIR__ . '/../models/Matricula.php';
     
             if(!isset($_SESSION['matricula_id'])){
-                $_SESSION['matricula_id'] = 1;
+                $_SESSION['matricula_id'] = 4;
             }
     
             $Matricula = new Matricula();
