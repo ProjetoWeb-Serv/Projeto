@@ -38,6 +38,63 @@
 
 
         header('Location: /cursos');
+    }else if(str_contains($acao, 'deletar') && $_SESSION['role'] == 'admin'){
+
+        if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+            foreach($_SESSION['cursos'] as $index => $curso){
+                if($curso->__get('id') == $_GET['id']){
+                    foreach($_SESSION['matriculas'] as $matricula){
+                        if($matricula->__get('id_curso') == $curso->__get('id')){
+                            setcookie('mensagem_erro', 'Erro ao deletar curso. Existem matrículas vinculadas a este curso.', time() + 2, '/');
+                            header('Location: /cursos');
+                            exit();
+                        }
+                    }
+                    $_SESSION['cursos'][$index] = null;
+                    $_SESSION['cursos'] = array_filter($_SESSION['cursos']);
+                    setcookie('mensagem', 'Curso deletado com Sucesso!', time() + 2, '/');
+                    break;
+                }else{
+                    setcookie('mensagem_erro', 'Erro ao deletar Curso.', time() + 2, '/');
+                }
+            }
+        }
+        header('Location: /cursos');
+    }else if($acao == 'modificar' && $_SESSION['role'] == 'admin'){
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            foreach($_SESSION['cursos'] as $index => $curso){
+                if($curso->__get('id') == $_POST['id']){
+                    $curso->__set('nome_curso', $_POST['nome_curso']);
+                    $curso->__set('carga_horaria', $_POST['carga_horaria']);
+                    $_SESSION['cursos'][$index] = $curso;
+                    setcookie('mensagem', 'Curso modificado com Sucesso!', time() + 2, '/');
+                    break;
+                }else{
+                    setcookie('mensagem_erro', 'Erro ao modificar curso. Verifique os dados e tente novamente.', time() + 2, '/');
+                }
+            }
+        }
+
+        header('Location: /cursos');
+    }else if(str_contains($acao, 'editar') && $_SESSION['role'] == 'admin'){
+
+        if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+            $Curso = new Curso();
+
+            $acao = 'editar_curso';
+
+            foreach($_SESSION['cursos'] as $curso){
+
+                if($curso->__get('id') == $_GET['id']){
+                    $Curso = $curso;
+                    break;
+                }
+            }
+        }
+    
     }else{
 
         $acao = '404';

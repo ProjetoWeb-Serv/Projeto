@@ -1,12 +1,13 @@
 <?php
-    require_once('Curso.php');    Class Matricula{
+    require_once('Curso.php');    
+    Class Matricula{
 
         private $id;
-        private $nome_aluno;
+        private $id_aluno;
         private $id_curso;
 
         public function __construct() {
-            $this->nome_aluno = '';
+            $this->id_aluno = 0;
             $this->id_curso = 0;
         }
 
@@ -18,13 +19,22 @@
             return $this->$atributo;
         }
 
+        public function buscarNomeAluno(){
+            foreach($_SESSION['alunos'] as $aluno){
+                if($aluno->__get('id') == $this->id_aluno){
+                    return $aluno->__get('nome_aluno');
+                }
+            }
+            return '';
+        }   
+
         public function buscarCursoNome(){
             foreach($_SESSION['cursos'] as $curso){
                 if($curso->__get('id') == $this->id_curso){
                     return $curso->__get('nome_curso');
                 }
             }
-            return '';        
+            return '';
         }
 
         public function buscarCargaHoraria(){

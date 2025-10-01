@@ -1,8 +1,11 @@
 <link rel="stylesheet" href="/css/login.css">
 
 <?php
-    if(isset($_COOKIE['mensagem_falha'])){
-        echo '<p class="error_login">' . htmlspecialchars($_COOKIE['mensagem_falha']) . '</p>';
+    if(isset($_COOKIE['mensagem'])){
+        echo '<p class="sucess_login">' . htmlspecialchars($_COOKIE['mensagem']) . '</p>';
+    }
+    if(isset($_COOKIE['mensagem_erro'])){
+        echo '<p class="error_login">' . htmlspecialchars($_COOKIE['mensagem_erro']) . '</p>';
     }
 ?>
 

@@ -17,6 +17,11 @@
         <th>Registro Curso</th>
         <th>Nome curso</th>
         <th>Carga horária</th>
+        <?php if($_SESSION['role'] === 'admin'){
+            echo '<th></th>';
+            echo '<th></th>';
+        }
+        ?>
     </tr>
 
     <?php
@@ -25,23 +30,33 @@
             foreach($_SESSION['cursos'] as $curso){
                 echo '<tr><td>'.$curso->id.'</td>';
                 echo '<td>'.$curso->nome_curso.'</td>';
-                echo '<td>'.$curso->carga_horaria.'</td></tr>';
+                echo '<td>'.$curso->carga_horaria.'</td>';
+
+                if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'){
+                    //editar
+                    echo '<td>
+                        <form method="GET" action="/cursos/editar">
+                            <input type="hidden" name="id" value="' . $curso->id . '">
+                            <div class="action_buttons">';
+                                require('views/components/editButton.php');
+                    echo    '</div>
+                        </form>
+                    </td>';
+
+                    //deletar
+                    echo '<td>
+                        <form method="GET" action="/cursos/deletar">
+                            <input type="hidden" name="id" value="' . $curso->id . '">
+                            <div class="action_buttons">';
+                                require('views/components/deleteButton.php');
+                    echo    '</div>
+                        </form>
+                    </td>';
+                }
+                echo '<tr>';
             }
         }else{
             echo '<tr><td>Ainda não foi cadastrado nenhum curso</td></tr>';
         }
     ?>
 </table>
-
-<?php
-    if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'){
-        echo '<div class="action_buttons">';
-        echo '<a href="/cursos/editar">';
-        require_once('views/components/editButton.php');
-        echo '</a>';
-        echo '<a href="/cursos/deletar">';
-        require_once('views/components/deleteButton.php');
-        echo '</a>';
-        echo '</div>';
-    }
-?>

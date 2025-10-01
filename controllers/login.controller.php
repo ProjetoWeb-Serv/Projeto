@@ -34,7 +34,7 @@
             }
 
             if(!$Usuario_encontrado){
-                setcookie('mensagem', 'Usuário ou senha incorretos!', time() + 2, '/');
+                setcookie('mensagem_erro', 'Usuário ou senha incorretos!', time() + 2, '/');
                 header('Location: /login');
                 exit();
             }

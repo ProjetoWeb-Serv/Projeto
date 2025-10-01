@@ -44,6 +44,13 @@
 
             foreach($_SESSION['alunos'] as $index => $aluno){
                 if($aluno->__get('id') == $_GET['id']){
+                    foreach($_SESSION['matriculas'] as $matricula){
+                        if($matricula->__get('id_aluno') == $aluno->__get('id')){
+                            setcookie('mensagem_erro', 'Erro ao deletar Aluno. Existem matrículas vinculadas a este Aluno.', time() + 2, '/');
+                            header('Location: /alunos');
+                            exit();
+                        }
+                    }
                     $_SESSION['alunos'][$index] = null;
                     $_SESSION['alunos'] = array_filter($_SESSION['alunos']);
                     setcookie('mensagem', 'Aluno deletado com Sucesso!', time() + 2, '/');

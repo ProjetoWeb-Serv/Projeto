@@ -15,6 +15,13 @@
             <a href="/cursos">Cursos</a>
             <a href="/alunos">Alunos</a>
             <a href="/matriculas">Matrículas</a>
+            <?php
+                if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
+                    echo '<a href="/logout">Sair</a>';
+                }else{
+                    echo '<a href="/login">Login</a>';
+                }
+            ?>
         </div>
     </div>
 </header>

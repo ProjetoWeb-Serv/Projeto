@@ -17,10 +17,11 @@
         <th>Registro Aluno</th>
         <th>Nome aluno</th>
         <th>Data Nascimento</th>
-    <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin')
-        echo '<th></th>';
-        echo '<th></th>';
-    ?>
+        <?php if($_SESSION['role'] === 'admin'){
+            echo '<th></th>';
+            echo '<th></th>';
+        }
+        ?>
     </tr>
 
     <?php
@@ -53,8 +54,9 @@
                                 require('views/components/deleteButton.php');
                     echo    '</div>
                         </form>
-                    </td></tr>';
+                    </td>';
                 }
+                echo '<tr>';
             }
         }else{
             echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td></tr>';
