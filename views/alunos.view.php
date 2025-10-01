@@ -33,7 +33,8 @@
             foreach($_SESSION['alunos'] as $aluno){
                 echo '<tr><td>'.$aluno->id.'</td>';
                 echo '<td>'.$aluno->nome_aluno.'</td>';
-                echo '<td>'.$aluno->data_nascimento.'</td>';
+                $strQuebrada = explode('-', $aluno->data_nascimento);
+                echo '<td>'.$strQuebrada[2].'/'.$strQuebrada[1].'/'.$strQuebrada[0].'</td>';
 
                 if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'){
                     //editar
