@@ -14,7 +14,9 @@
         if(isset($_COOKIE['mensagem_sucesso'])){
             echo '<p class="sucess_login">' . htmlspecialchars($_COOKIE['mensagem_sucesso']) . '</p>';
         }
+
         require_once('models/Aluno.php');
+
         if(isset($_SESSION['alunos'])){
             foreach($_SESSION['alunos'] as $aluno){
                 echo '<tr><td>'.$aluno->id.'</td>';
