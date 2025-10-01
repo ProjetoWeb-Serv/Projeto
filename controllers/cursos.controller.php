@@ -28,9 +28,12 @@
             $Curso->__set('carga_horaria', $_POST['carga_horaria']);
             $Curso->__set('id', $_SESSION['curso_id']);
             if($Curso->__get('nome_curso') != '' && $Curso->__get('carga_horaria') != 0){
-                   $_SESSION['cursos'][] = $Curso;
-                   $_SESSION['curso_id']++;
-               }
+                $_SESSION['cursos'][] = $Curso;
+                $_SESSION['curso_id']++;
+                setcookie('mensagem', 'Curso cadastrado com Sucesso!', time() + 2, '/');
+            }else{
+                setcookie('mensagem_erro', 'Erro ao cadastrar curso. Verifique os dados e tente novamente.', time() + 2, '/');
+            }
         }
 
 

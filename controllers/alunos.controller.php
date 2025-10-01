@@ -29,8 +29,12 @@
 
             if($Aluno->__get('nome_aluno') != '' && $Aluno->__get('data_nascimento') != ''){
                 $_SESSION['alunos'][] = $Aluno;
+                setcookie('mensagem', 'Aluno cadastrado com Sucesso!', time() + 2, '/');
+                $_SESSION['aluno_id']++;
+            }else{
+                setcookie('mensagem_erro', 'Erro ao cadastrar aluno. Verifique os dados e tente novamente.', time() + 2, '/');
             }
-            $_SESSION['aluno_id']++;
+
         }
 
         header('Location: /alunos');
@@ -41,7 +45,11 @@
             foreach($_SESSION['alunos'] as $index => $aluno){
                 if($aluno->__get('id') == $_GET['id']){
                     $_SESSION['alunos'][$index] = null;
+                    $_SESSION['alunos'] = array_filter($_SESSION['alunos']);
+                    setcookie('mensagem', 'Aluno deletado com Sucesso!', time() + 2, '/');
                     break;
+                }else{
+                    setcookie('mensagem_erro', 'Erro ao deletar aluno.', time() + 2, '/');
                 }
             }
         }
@@ -54,7 +62,10 @@
                     $aluno->__set('nome_aluno', $_POST['nome_aluno']);
                     $aluno->__set('data_nascimento', $_POST['data_nascimento']);
                     $_SESSION['alunos'][$index] = $aluno;
+                    setcookie('mensagem', 'Aluno modificado com Sucesso!', time() + 2, '/');
                     break;
+                }else{
+                    setcookie('mensagem_erro', 'Erro ao modificar aluno. Verifique os dados e tente novamente.', time() + 2, '/');
                 }
             }
         }

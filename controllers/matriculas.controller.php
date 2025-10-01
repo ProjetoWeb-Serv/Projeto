@@ -40,9 +40,12 @@
             $Matricula->__set('id', $_SESSION['matricula_id']);
             
             if($Matricula->__get('nome_aluno') != '' && $Matricula->__get('id_curso') != 0){
-                   $_SESSION['matriculas'][] = $Matricula;
-                   $_SESSION['matricula_id']++;
-               }
+                $_SESSION['matriculas'][] = $Matricula;
+                $_SESSION['matricula_id']++;
+                setcookie('mensagem', 'matricula feita com Sucesso!', time() + 2, '/');
+            }else{
+                setcookie('mensagem_erro', 'Erro ao fazer matrícula. Verifique os dados e tente novamente.', time() + 2, '/');
+            }
         }
 
         header('Location: /matriculas');

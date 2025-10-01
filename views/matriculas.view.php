@@ -1,3 +1,12 @@
+<?php
+    if(isset($_COOKIE['mensagem'])){
+        echo '<p class="sucess_login">' . htmlspecialchars($_COOKIE['mensagem']) . '</p>';
+    }
+    if(isset($_COOKIE['mensagem_erro'])){
+        echo '<p class="error_message">' . htmlspecialchars($_COOKIE['mensagem_erro']) . '</p>';
+    }
+?>
+
 <div class="button_curso">
     <a href="/matriculas/cadastrar">
         <button>Inserir nova matrícula</button>

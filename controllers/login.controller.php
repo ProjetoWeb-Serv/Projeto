@@ -1,5 +1,12 @@
 <?php
 
+    if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
+        setcookie('mensagem', 'Você já está logado!', time() + 2, '/');
+        header('Location: /alunos');
+        exit();
+    }
+
+
     if($acao != 'autenticar'){
 
         $acao = 'login';
@@ -19,7 +26,7 @@
                     $_SESSION['logado'] = true;
                     $_SESSION['usuario'] = $usuario->__get('nome');
                     $_SESSION['role'] = $usuario->__get('role');
-                    setcookie('mensagem_sucesso', 'Login efetuado!', time() + 2, '/');
+                    setcookie('mensagem', 'Login efetuado!', time() + 2, '/');
                     $Usuario_encontrado = true;
                     header('Location: /alunos');
                     exit();
@@ -27,7 +34,7 @@
             }
 
             if(!$Usuario_encontrado){
-                setcookie('mensagem_falha', 'Usuário ou senha incorretos!', time() + 2, '/');
+                setcookie('mensagem', 'Usuário ou senha incorretos!', time() + 2, '/');
                 header('Location: /login');
                 exit();
             }

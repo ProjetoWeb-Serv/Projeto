@@ -201,13 +201,6 @@ td:first-child {
     color: #333;
 }
 
-.sucess_login {
-    color: green;
-    font-size: xx-large;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-}
 
 .error_login {
     color: red;
@@ -246,4 +239,22 @@ td:first-child {
 
 .edit_button button:hover {
     background-color: #a9a9a9;
+}
+
+.error_message {
+    color: red;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.sucess_login {
+    color: green;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 70px;
 }

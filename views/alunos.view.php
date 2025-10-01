@@ -1,3 +1,12 @@
+<?php
+    if(isset($_COOKIE['mensagem'])){
+        echo '<p class="sucess_login">' . htmlspecialchars($_COOKIE['mensagem']) . '</p>';
+    }
+    if(isset($_COOKIE['mensagem_erro'])){
+        echo '<p class="error_message">' . htmlspecialchars($_COOKIE['mensagem_erro']) . '</p>';
+    }
+?>
+
 <div class="button_aluno">
     <a href="/alunos/cadastrar">
     <button>Inserir novo aluno</button>
@@ -15,16 +24,11 @@
     </tr>
 
     <?php
-        if(isset($_COOKIE['mensagem_sucesso'])){
-            echo '<p class="sucess_login">' . htmlspecialchars($_COOKIE['mensagem_sucesso']) . '</p>';
-        }
 
         require_once('models/Aluno.php');
 
         if(isset($_SESSION['alunos'])){
-            if('nome_aluno == null'){
-                $_SESSION['alunos'] = array_filter($_SESSION['alunos']);
-            }
+            
             foreach($_SESSION['alunos'] as $aluno){
                 echo '<tr><td>'.$aluno->id.'</td>';
                 echo '<td>'.$aluno->nome_aluno.'</td>';
