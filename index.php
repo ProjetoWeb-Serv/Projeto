@@ -2,6 +2,8 @@
     require_once 'models/Curso.php';
     require_once 'models/Aluno.php';
     require_once 'models/Matricula.php';
+    require_once 'models/Usuario.php';
+    require_once 'data/usuarios.php';
 
     session_start();
     
