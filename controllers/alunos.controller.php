@@ -34,28 +34,51 @@
         }
 
         header('Location: /alunos');
-    }else if($acao == 'deletar'){
+    }else if(str_contains($acao, 'deletar') && $_SESSION['role'] == 'admin'){
 
-        $acao = 'deletar_aluno';
+        if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
+            foreach($_SESSION['alunos'] as $index => $aluno){
+                if($aluno->__get('id') == $_GET['id']){
+                    $_SESSION['alunos'][$index] = null;
+                    break;
+                }
+            }
+        }
+        header('Location: /alunos');
+    }else if($acao == 'modificar' && $_SESSION['role'] == 'admin'){
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            foreach($_SESSION['alunos'] as $index => $aluno){
+                if($aluno->__get('id') == $_POST['id']){
+                    $aluno->__set('nome_aluno', $_POST['nome_aluno']);
+                    $aluno->__set('data_nascimento', $_POST['data_nascimento']);
+                    $_SESSION['alunos'][$index] = $aluno;
+                    break;
+                }
+            }
+        }
+
+        header('Location: /alunos');
+    }else if(str_contains($acao, 'editar') && $_SESSION['role'] == 'admin'){
+
+        if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+            $Aluno = new Aluno();
+
+            $acao = 'editar_aluno';
+
+            foreach($_SESSION['alunos'] as $aluno){
+                if($aluno->__get('id') == $_GET['id']){
+                    $Aluno = $aluno;
+                    break;
+                }
+            }
+        }
     }else{
 
         $acao = '404';
     }
 
-    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && is_numeric($_GET['id'])){
-        $_GET['id'];
-
-        $Aluno = new Aluno();
-
-        $acao = 'editar_aluno';
-
-        foreach($_SESSION['alunos'] as $aluno){
-            if($aluno->__get('id') == $_GET['id']){
-                $Aluno = $aluno;
-                break;
-            }
-        }
-    }
 
     require_once("views.php");

@@ -2,7 +2,8 @@
     <h2>Edite o Aluno</h2>
 </div>
 
-<form id="formulario_alunos" method="POST" action="/alunos/gravar">
+<form id="formulario_alunos" method="POST" action="/alunos/modificar">
+    <input type="hidden" name="id" value="<?php echo isset($Aluno) ? htmlspecialchars($Aluno->__get('id')) : ''; ?>">   
     <div class="aluno_nome">
         <input type="text" name="nome_aluno" value="<?php echo isset($Aluno) ? htmlspecialchars($Aluno->__get('nome_aluno')) : ''; ?>" placeholder="Insira o nome do aluno">
     </div>

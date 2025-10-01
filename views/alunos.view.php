@@ -8,8 +8,10 @@
         <th>Registro Aluno</th>
         <th>Nome aluno</th>
         <th>Data Nascimento</th>
-        <th></th>
-        <th></th>
+    <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin')
+        echo '<th></th>';
+        echo '<th></th>';
+    ?>
     </tr>
 
     <?php
@@ -20,29 +22,35 @@
         require_once('models/Aluno.php');
 
         if(isset($_SESSION['alunos'])){
+            if('nome_aluno == null'){
+                $_SESSION['alunos'] = array_filter($_SESSION['alunos']);
+            }
             foreach($_SESSION['alunos'] as $aluno){
                 echo '<tr><td>'.$aluno->id.'</td>';
                 echo '<td>'.$aluno->nome_aluno.'</td>';
                 echo '<td>'.$aluno->data_nascimento.'</td>';
 
-                //editar
-                echo '<td>
-                    <form method="GET" action="/alunos/editar">
-                        <input type="hidden" name="id" value="' . $aluno->id . '">
-                        <div class="action_buttons">';
-                            require('views/components/editButton.php');
-                echo    '</div>
-                    </form>
-                </td>';
+                if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'){
+                    //editar
+                    echo '<td>
+                        <form method="GET" action="/alunos/editar">
+                            <input type="hidden" name="id" value="' . $aluno->id . '">
+                            <div class="action_buttons">';
+                                require('views/components/editButton.php');
+                    echo    '</div>
+                        </form>
+                    </td>';
 
-                //deletar
-                echo '<td>
-                    <form method="GET" action="/alunos/deletar?id=' . $aluno->id . '">
-                        <div class="action_buttons">';
-                            require('views/components/deleteButton.php');
-                echo    '</div>
-                    </form>
-                </td></tr>';
+                    //deletar
+                    echo '<td>
+                        <form method="GET" action="/alunos/deletar">
+                            <input type="hidden" name="id" value="' . $aluno->id . '">
+                            <div class="action_buttons">';
+                                require('views/components/deleteButton.php');
+                    echo    '</div>
+                        </form>
+                    </td></tr>';
+                }
             }
         }else{
             echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td></tr>';
