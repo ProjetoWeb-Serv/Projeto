@@ -23,3 +23,16 @@
         }
     ?>
 </table>
+
+<?php
+    if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'){
+        echo '<div class="action_buttons">';
+        echo '<a href="/cursos/editar">';
+        require_once('views/components/editButton.php');
+        echo '</a>';
+        echo '<a href="/cursos/deletar">';
+        require_once('views/components/deleteButton.php');
+        echo '</a>';
+        echo '</div>';
+    }
+?>

@@ -1,5 +1,10 @@
 <?php
 
+    if(!isset($_SESSION['logado']) || $_SESSION['logado'] !== true){
+        header('Location: /login');
+        exit();
+    }
+
     if($acao == 'listar'){
 
         $acao = 'matriculas';
