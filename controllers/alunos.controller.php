@@ -42,6 +42,8 @@
 
         if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
+            $deletado = false;
+            
             foreach($_SESSION['alunos'] as $index => $aluno){
                 if($aluno->__get('id') == $_GET['id']){
                     foreach($_SESSION['matriculas'] as $matricula){
@@ -54,26 +56,35 @@
                     $_SESSION['alunos'][$index] = null;
                     $_SESSION['alunos'] = array_filter($_SESSION['alunos']);
                     setcookie('mensagem', 'Aluno deletado com Sucesso!', time() + 2, '/');
+                    $deletado = true;
                     break;
-                }else{
-                    setcookie('mensagem_erro', 'Erro ao deletar aluno.', time() + 2, '/');
                 }
+
+            if($deletado !== true){
+                setcookie('mensagem_erro', 'Erro ao deletar aluno.', time() + 2, '/');
+            }
             }
         }
         header('Location: /alunos');
     }else if($acao == 'modificar' && $_SESSION['role'] == 'admin'){
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $deletado = false;
+
             foreach($_SESSION['alunos'] as $index => $aluno){
                 if($aluno->__get('id') == $_POST['id']){
                     $aluno->__set('nome_aluno', $_POST['nome_aluno']);
                     $aluno->__set('data_nascimento', $_POST['data_nascimento']);
                     $_SESSION['alunos'][$index] = $aluno;
                     setcookie('mensagem', 'Aluno modificado com Sucesso!', time() + 2, '/');
+                    $deletado = true;
                     break;
-                }else{
-                    setcookie('mensagem_erro', 'Erro ao modificar aluno. Verifique os dados e tente novamente.', time() + 2, '/');
                 }
+            }
+
+            if($deletado !== true){
+                setcookie('mensagem_erro', 'Erro ao modificar aluno. Verifique os dados e tente novamente.', time() + 2, '/');
             }
         }
 

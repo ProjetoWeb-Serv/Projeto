@@ -11,6 +11,6 @@
         <input type="date" name="data_nascimento" value="<?php echo isset($Aluno) ? htmlspecialchars($Aluno->__get('data_nascimento')) : ''; ?>" placeholder="Insira a data de nascimento">
     </div>
     <div class="button_aluno">
-        <button type="submit">Inserir aluno</button>
+        <button type="submit">Editar aluno</button>
     </div>
 </form>

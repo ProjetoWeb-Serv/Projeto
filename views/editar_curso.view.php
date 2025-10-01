@@ -1,5 +1,5 @@
 <div class="curso_title">
-    <h2>Inserir Novo Curso</h2>
+    <h2>Editar Curso</h2>
 </div>
     <form id="formulario_cursos" method="POST" action="/cursos/modificar">
         <input type="hidden" name="id" value="<?php echo isset($Curso) ? htmlspecialchars($Curso->__get('id')) : ''; ?>">
@@ -12,7 +12,7 @@
             
         </div>
         <div class="button_curso">
-            <button type="submit">Inserir curso</button>
+            <button type="submit">Editar curso</button>
             
         </div>
     </form>
