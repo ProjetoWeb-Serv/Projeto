@@ -10,12 +10,21 @@
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-            if($nome === 'admin' && $senha === 'admin123'){
-                $_SESSION['usuario'] = $nome;
-                setcookie('mensagem_sucesso', 'Login efetuado!', time() + 5, '/');
-                header('Location: /alunos');
-                exit();
-            }else{
+            $Usuario_encontrado = false;
+            require_once('models/Usuario.php');
+
+            foreach($Usuarios[0] as $usuario){
+                if($usuario->__get('nome') === $nome && $usuario->__get('senha') === $senha){
+                    $_SESSION['usuario'] = $usuario->__get('nome');
+                    $_SESSION['role'] = $usuario->__get('role');
+                    setcookie('mensagem_sucesso', 'Login efetuado!', time() + 5, '/');
+                    $Usuario_encontrado = true;
+                    header('Location: /alunos');
+                    exit();
+                }
+            }
+
+            if(!$Usuario_encontrado){
                 setcookie('mensagem_falha', 'Usuário ou senha incorretos!', time() + 5, '/');
                 header('Location: /login');
                 exit();
