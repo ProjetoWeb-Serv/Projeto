@@ -123,6 +123,10 @@ table {
     margin-bottom: 30px;
 }
 
+table th:nth-child(4), table th:nth-child(5) {
+    width: 30px;
+}
+
 th, td {
     padding: 12px 15px;
     border: 1px solid #ccc;
@@ -212,4 +216,34 @@ td:first-child {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 0px;
+}
+
+.action_buttons {
+    display: flex;
+    gap: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    justify-content: end;
+}
+
+.delete_button button, .edit_button button {
+    border: 1.5px solid #ccc;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete_button button {
+    background-color: #EF4444;
+    color: white;
+}
+
+.delete_button button:hover {
+    background-color: #c82333;
+}
+
+.edit_button button:hover {
+    background-color: #a9a9a9;
 }

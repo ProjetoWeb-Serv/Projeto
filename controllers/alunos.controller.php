@@ -1,4 +1,5 @@
 <?php
+    require_once('models/Aluno.php');
 
     if(!isset($_SESSION['logado']) || $_SESSION['logado'] !== true){
         header('Location: /login');
@@ -16,7 +17,6 @@
     }else if($acao == 'gravar'){
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            require_once('models/Aluno.php');
 
             if (!isset($_SESSION['aluno_id'])) {
                 $_SESSION['aluno_id'] = 1;
@@ -34,9 +34,28 @@
         }
 
         header('Location: /alunos');
+    }else if($acao == 'deletar'){
+
+        $acao = 'deletar_aluno';
+
     }else{
 
         $acao = '404';
+    }
+
+    if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && is_numeric($_GET['id'])){
+        $_GET['id'];
+
+        $Aluno = new Aluno();
+
+        $acao = 'editar_aluno';
+
+        foreach($_SESSION['alunos'] as $aluno){
+            if($aluno->__get('id') == $_GET['id']){
+                $Aluno = $aluno;
+                break;
+            }
+        }
     }
 
     require_once("views.php");
