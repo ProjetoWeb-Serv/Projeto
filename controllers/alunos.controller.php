@@ -59,11 +59,11 @@
                     $deletado = true;
                     break;
                 }
-
+            }
             if($deletado !== true){
                 setcookie('mensagem_erro', 'Erro ao deletar aluno.', time() + 2, '/');
             }
-            }
+            
         }
         header('Location: /alunos');
     }else if($acao == 'modificar' && $_SESSION['role'] == 'admin'){
