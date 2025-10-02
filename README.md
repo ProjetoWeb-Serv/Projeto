@@ -1,4 +1,4 @@
-Projeto Web-Servidor
+<h1 align="center"> Projeto Web-Servidor </h1>
 
 Alunos: Leonardo Henrique Bonfanti
         Enzo Garcia
