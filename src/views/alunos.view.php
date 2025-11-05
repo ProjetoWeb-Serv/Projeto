@@ -26,23 +26,22 @@
 
     <?php
 
-        require_once('models/Aluno.php');
+        require_once('src/models/Aluno.php');
 
-        if(isset($_SESSION['alunos'])){
+        if($alunos != []){
             
-            foreach($_SESSION['alunos'] as $aluno){
+            foreach($alunos as $aluno){
                 echo '<tr><td>'.$aluno->id.'</td>';
                 echo '<td>'.$aluno->nome_aluno.'</td>';
-                $strQuebrada = explode('-', $aluno->data_nascimento);
-                echo '<td>'.$strQuebrada[2].'/'.$strQuebrada[1].'/'.$strQuebrada[0].'</td>';
-
+                echo '<td>'.$aluno->data_nascimento.'</td>';
+                
                 if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'){
                     //editar
                     echo '<td>
                         <form method="GET" action="/alunos/editar">
                             <input type="hidden" name="id" value="' . $aluno->id . '">
                             <div class="action_buttons">';
-                                require('views/components/editButton.php');
+                                require('src/views/components/editButton.php');
                     echo    '</div>
                         </form>
                     </td>';
@@ -52,13 +51,14 @@
                         <form method="GET" action="/alunos/deletar">
                             <input type="hidden" name="id" value="' . $aluno->id . '">
                             <div class="action_buttons">';
-                                require('views/components/deleteButton.php');
+                                require('src/views/components/deleteButton.php');
                     echo    '</div>
                         </form>
                     </td>';
                 }
                 echo '<tr>';
             }
+
         }else{
             echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td></tr>';
         }

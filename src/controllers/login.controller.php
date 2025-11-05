@@ -1,5 +1,8 @@
 <?php
 
+    use Projeto\models\Usuario;
+    use Projeto\models\dao\UsuarioDAO;
+
     if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
         setcookie('mensagem', 'Você já está logado!', time() + 2, '/');
         header('Location: /alunos');
@@ -20,7 +23,7 @@
             $nome = $_POST['nome'] ?? '';
             $senha = $_POST['senha'] ?? '';
             
-            if(Projeto\UsuarioDAO::login($nome, $senha)){
+            if(UsuarioDAO::login($nome, $senha)){
                 setcookie('mensagem', 'Login realizado com sucesso!', time() + 2, '/');
                 header('Location: /alunos');
 
