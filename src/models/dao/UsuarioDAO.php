@@ -1,6 +1,8 @@
 <?php
 
-namespace Projeto;
+namespace Projeto\Models\dao;
+
+use Projeto\Connection;
 
 use PDO;
 

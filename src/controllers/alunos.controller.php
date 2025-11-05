@@ -1,5 +1,6 @@
 <?php
     use Projeto\Models\Aluno;
+    use Projeto\Models\dao\AlunoDAO;
 
     if(!isset($_SESSION['logado']) || $_SESSION['logado'] !== true){
         header('Location: /login');
@@ -7,6 +8,17 @@
     }
 
     if($acao == 'listar'){
+
+        try{
+
+            $alunos = AlunoDAO::listarTodos();
+
+        }catch(Exception $e){
+
+            setcookie('mensagem_erro', 'Erro ao listar alunos. Erro:' + $e->getMessage(), time() + 2, '/');
+            $alunos = [];
+
+        }
 
         $acao = 'alunos';
         
@@ -18,19 +30,20 @@
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-            if (!isset($_SESSION['aluno_id'])) {
-                $_SESSION['aluno_id'] = 6;
-            }
-
             $Aluno = new Aluno();
             $Aluno->__set('nome_aluno', $_POST['nome_aluno']);
             $Aluno->__set('data_nascimento', $_POST['data_nascimento']);
-            $Aluno->__set('id', $_SESSION['aluno_id']);
 
             if($Aluno->__get('nome_aluno') != '' && $Aluno->__get('data_nascimento') != ''){
-                $_SESSION['alunos'][] = $Aluno;
-                setcookie('mensagem', 'Aluno cadastrado com Sucesso!', time() + 2, '/');
-                $_SESSION['aluno_id']++;
+
+                try{
+
+                    AlunoDAO::inserir($Aluno);
+                    setcookie('mensagem', 'Aluno cadastrado com Sucesso!', time() + 2, '/');
+
+                }catch(Exception $e){
+                    setcookie('mensagem_erro', 'Erro ao cadastrar aluno. Erro:' + $e->getMessage(), time() + 2, '/');
+                }
             }else{
                 setcookie('mensagem_erro', 'Erro ao cadastrar aluno. Verifique os dados e tente novamente.', time() + 2, '/');
             }
@@ -42,53 +55,61 @@
 
         if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-            $deletado = false;
+            try{
 
-            foreach($_SESSION['alunos'] as $index => $aluno){
-                if($aluno->__get('id') == $_GET['id']){
-                    foreach($_SESSION['matriculas'] as $matricula){
-                        if($matricula->__get('id_aluno') == $aluno->__get('id')){
-                            setcookie('mensagem_erro', 'Erro ao deletar Aluno. Existem matrículas vinculadas a este Aluno.', time() + 2, '/');
-                            header('Location: /alunos');
-                            exit();
-                        }
+                $alunos = AlunoDAO::listarTodos();
+
+                foreach($alunos as $aluno){
+
+                    if($aluno->__get('id') == $_GET['id']){
+
+                        AlunoDAO::excluir($aluno->__get('id'));
+                        setcookie('mensagem', 'Aluno deletado com Sucesso!', time() + 2, '/');
+
                     }
-                    $_SESSION['alunos'][$index] = null;
-                    $_SESSION['alunos'] = array_filter($_SESSION['alunos']);
-                    setcookie('mensagem', 'Aluno deletado com Sucesso!', time() + 2, '/');
-                    $deletado = true;
-                    break;
                 }
-            }
-            if($deletado !== true){
-                setcookie('mensagem_erro', 'Erro ao deletar aluno.', time() + 2, '/');
+            }catch(Exception $e){
+                setcookie('mensagem_erro', 'Erro ao deletar aluno. Erro:' + $e->getMessage(), time() + 2, '/');
             }
             
         }
+
         header('Location: /alunos');
+
     }else if($acao == 'modificar' && $_SESSION['role'] == 'admin'){
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-            $deletado = false;
+            try{
 
-            foreach($_SESSION['alunos'] as $index => $aluno){
-                if($aluno->__get('id') == $_POST['id']){
-                    $aluno->__set('nome_aluno', $_POST['nome_aluno']);
-                    $aluno->__set('data_nascimento', $_POST['data_nascimento']);
-                    $_SESSION['alunos'][$index] = $aluno;
-                    setcookie('mensagem', 'Aluno modificado com Sucesso!', time() + 2, '/');
-                    $deletado = true;
-                    break;
+                $alunos = AlunoDAO::listarTodos();
+
+                foreach($alunos as $aluno){
+
+                    if($aluno->__get('id') == $_POST['id']){
+
+                        $aluno->__set('nome_aluno', $_POST['nome_aluno']);
+                        $aluno->__set('data_nascimento', $_POST['data_nascimento']);
+                        
+                        if($aluno->__get('nome_aluno') == '' || strlen($aluno->__get('data_nascimento')) > 10 || strlen($aluno->__get('data_nascimento')) < 10){
+                            setcookie('mensagem_erro', 'Erro ao modificar aluno. Verifique os dados e tente novamente.', time() + 2, '/');
+                            header('Location: /alunos');
+                            exit();
+                        }
+
+                        AlunoDAO::atualizar($aluno);
+
+                        setcookie('mensagem', 'Aluno modificado com Sucesso!', time() + 2, '/');
+                        break;
+                    }
                 }
-            }
-
-            if($deletado !== true){
-                setcookie('mensagem_erro', 'Erro ao modificar aluno. Verifique os dados e tente novamente.', time() + 2, '/');
+            }catch(Exception $e){
+                setcookie('mensagem_erro', 'Erro ao modificar aluno. Erro:' + $e->getMessage(), time() + 2, '/');
             }
         }
 
         header('Location: /alunos');
+        
     }else if(str_contains($acao, 'editar') && $_SESSION['role'] == 'admin'){
 
         if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -97,9 +118,14 @@
 
             $acao = 'editar_aluno';
 
-            foreach($_SESSION['alunos'] as $aluno){
+            $alunos = AlunoDAO::listarTodos();
+
+
+            foreach($alunos as $aluno){
                 if($aluno->__get('id') == $_GET['id']){
                     $Aluno = $aluno;
+                    $strDataNasc = explode('/', $aluno->__get('data_nascimento'));
+                    $Aluno->__set('data_nascimento', $strDataNasc[2] . '-' . $strDataNasc[1] . '-' . $strDataNasc[0]);
                     break;
                 }
             }
