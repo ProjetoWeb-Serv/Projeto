@@ -9,9 +9,9 @@
             <p class="select_aluno">Selecione o aluno</p>
             <select id="aluno" name="id_aluno">
                     <?php 
-                    foreach($_SESSION['alunos'] as $aluno){
+                    foreach($alunos as $aluno){
                         $selected = '';
-                        if($aluno->__get('id') == $Matricula->__get('id_aluno')) {
+                        if($aluno->__get('id') == $Matricula->__get('aluno_id')) {
                             $selected = 'selected';
                         }
                         echo '<option value="'.$aluno->__get('id').'" ' . $selected . '>'
@@ -24,9 +24,9 @@
             <p class="select_curso">Selecione o curso</p>
             <select id="curso" name="id_curso">
                     <?php 
-                    foreach($_SESSION['cursos'] as $curso){
+                    foreach($cursos as $curso){
                         $selected = '';
-                        if($curso->__get('id') == $Matricula->__get('id_curso')) {
+                        if($curso->__get('id') == $Matricula->__get('curso_id')) {
                             $selected = 'selected';
                         }
                         echo '<option value="'.$curso->__get('id').'"'. $selected .'>' . $curso->__get('nome_curso') . '</option>';

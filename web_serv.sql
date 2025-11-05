@@ -150,6 +150,22 @@ ALTER TABLE `matriculas`
   ADD CONSTRAINT `matriculas_ibfk_2` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`id`);
 COMMIT;
 
+
+INSERT INTO `alunos` (`id`, `nome_aluno`, `data_nascimento`) VALUES 
+('1', 'Leo', '2006-01-19'), 
+('2', 'Enzo', '2005-10-12'), 
+('3', 'João', '2006-07-01');
+
+INSERT INTO `cursos` (`id`, `nome_curso`, `carga_horaria`) VALUES 
+('1', 'Análise e Desenvolvimento de Sistemas', '120'), 
+('2', 'Engenharia Mecânica', '80'), 
+('3', 'Engenharia Química', '100');
+
+INSERT INTO `matriculas` (`id`, `aluno_id`, `curso_id`) VALUES 
+('1', '1', '1'), 
+('2', '2', '2'), 
+('3', '3', '3');
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

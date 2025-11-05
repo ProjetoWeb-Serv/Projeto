@@ -6,9 +6,9 @@
     <form id="formulario_matriculas" method="POST" action="/matriculas/gravar">
         <div class="select_div">
             <p class="select_aluno">Selecione o aluno</p>
-            <select id="aluno" name="id_aluno">
+            <select id="aluno" name="aluno_id">
                     <?php 
-                    foreach($_SESSION['alunos'] as $aluno){
+                    foreach($alunos as $aluno){
                         echo '<option value="'.$aluno->__get('id').'">' . $aluno->__get('nome_aluno') . '</option>';
                     }
                     ?> 
@@ -16,9 +16,9 @@
         </div>
         <div class="select_div">
             <p class="select_curso">Selecione o curso</p>
-            <select id="curso" name="id_curso">
+            <select id="curso" name="curso_id">
                     <?php 
-                    foreach($_SESSION['cursos'] as $curso){
+                    foreach($cursos as $curso){
                         echo '<option value="'.$curso->__get('id').'">' . $curso->__get('nome_curso') . '</option>';
                     }
                     ?> 

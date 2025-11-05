@@ -1,4 +1,7 @@
 <?php
+
+use Projeto\Models\Matricula;
+
     if(isset($_COOKIE['mensagem'])){
         echo '<p class="sucess_login">' . htmlspecialchars($_COOKIE['mensagem']) . '</p>';
     }
@@ -25,9 +28,8 @@
     </tr>
 
     <?php
-    if(isset($_SESSION['matriculas'])){
-        require_once __DIR__ . '/../models/Matricula.php';
-            foreach($_SESSION['matriculas'] as $matricula){
+    if($matriculas != []){
+            foreach($matriculas as $matricula){
 
                 echo '<tr><td>'.$matricula->buscarNomeAluno().'</td>';
                 echo '<td>'.$matricula->buscarCursoNome().'</td>';
@@ -39,7 +41,7 @@
                         <form method="GET" action="/matriculas/editar">
                             <input type="hidden" name="id" value="' . $matricula->id . '">
                             <div class="action_buttons">';
-                                require('views/components/editButton.php');
+                                require('src/views/components/editButton.php');
                     echo    '</div>
                         </form>
                     </td>';
@@ -49,7 +51,7 @@
                         <form method="GET" action="/matriculas/deletar">
                             <input type="hidden" name="id" value="' . $matricula->id . '">
                             <div class="action_buttons">';
-                                require('views/components/deleteButton.php');
+                                require('src/views/components/deleteButton.php');
                     echo    '</div>
                         </form>
                     </td>';
@@ -57,7 +59,7 @@
                 echo '<tr>';
             }
         }else{
-            echo '<tr><td>Ainda não foi cadastrado nenhum aluno</td></tr>';
+            echo '<tr><td>Ainda não foi cadastrado nenhuma matrícula</td></tr>';
     }
     ?>
 </table>

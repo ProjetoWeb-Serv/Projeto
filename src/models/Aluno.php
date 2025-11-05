@@ -1,5 +1,5 @@
 <?php
-
+namespace Projeto\Models;
     class Aluno {
 
         private $id;

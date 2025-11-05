@@ -1,4 +1,6 @@
 <?php
+
+use Projeto\Models\dao\CursoDAO;
     if(isset($_COOKIE['mensagem'])){
         echo '<p class="sucess_login">' . htmlspecialchars($_COOKIE['mensagem']) . '</p>';
     }
@@ -25,9 +27,7 @@
     </tr>
 
     <?php
-        require_once('models/Curso.php');
-        if(isset($_SESSION['cursos'])){
-            foreach($_SESSION['cursos'] as $curso){
+       foreach($cursos as $curso){
                 echo '<tr><td>'.$curso->id.'</td>';
                 echo '<td>'.$curso->nome_curso.'</td>';
                 echo '<td>'.$curso->carga_horaria.'</td>';
@@ -38,7 +38,7 @@
                         <form method="GET" action="/cursos/editar">
                             <input type="hidden" name="id" value="' . $curso->id . '">
                             <div class="action_buttons">';
-                                require('views/components/editButton.php');
+                                require('src/views/components/editButton.php');
                     echo    '</div>
                         </form>
                     </td>';
@@ -48,15 +48,12 @@
                         <form method="GET" action="/cursos/deletar">
                             <input type="hidden" name="id" value="' . $curso->id . '">
                             <div class="action_buttons">';
-                                require('views/components/deleteButton.php');
+                                require('src/views/components/deleteButton.php');
                     echo    '</div>
                         </form>
                     </td>';
                 }
                 echo '<tr>';
             }
-        }else{
-            echo '<tr><td>Ainda não foi cadastrado nenhum curso</td></tr>';
-        }
     ?>
 </table>

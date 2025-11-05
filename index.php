@@ -1,17 +1,9 @@
 <?php 
 
-    require_once 'models/Curso.php';
-    require_once 'models/Aluno.php';
-    require_once 'models/Matricula.php';
-    require_once 'models/Usuario.php';
-
+    require 'vendor/autoload.php';
+    
     session_start();
-
-    require_once 'data/usuarios.php';
-    include_once 'data/alunos.php';
-    include_once 'data/matriculas.php';
-    include_once 'data/cursos.php';
-
+    
     $pagina = substr($_SERVER['REQUEST_URI'], 1);  
     $rotas = explode('/', $pagina);
         
@@ -19,11 +11,11 @@
 
     $acao = $rotas[1] ?? 'listar';
 
-    $controller = "controllers/$recurso.controller.php";
+    $controller = "src/controllers/$recurso.controller.php";
 
     if(file_exists($controller)){
         require($controller);
     } else {
-        require("controllers/404.controller.php");
+        require("src/controllers/404.controller.php");
     }
 ?>

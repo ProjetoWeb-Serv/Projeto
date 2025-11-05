@@ -1,5 +1,8 @@
 <?php
 
+    namespace Projeto\Models;
+
+   
     Class Curso{
 
         private $id;
@@ -11,6 +14,7 @@
             $this->carga_horaria = 0;
         }
 
+    //get e set
         public function __set($atributo, $valor){
             $this->$atributo = $valor;
         }
@@ -19,3 +23,5 @@
             return $this->$atributo;
         }
     }
+
+   
