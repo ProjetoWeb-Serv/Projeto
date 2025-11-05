@@ -1,6 +1,7 @@
 <?php
     use Projeto\Models\Curso;
     use Projeto\Models\dao\CursoDAO;
+    use Projeto\Models\dao\MatriculaDAO;
 
     if(!isset($_SESSION['logado']) || $_SESSION['logado'] !== true){
         header('Location: /login');
@@ -49,12 +50,17 @@
             try {
                 $curso = CursoDAO::findById($_GET['id']);
                 if($curso){
+
+                    if(MatriculaDAO::buscarMatriculaPorCurso($curso->__get('id')) != null){
+                        throw new Exception('Não é possível deletar o curso pois ele possui matrículas vinculadas.');
+                    }
+
                     CursoDAO::delete($_GET['id']);
                     setcookie('mensagem', 'Curso deletado com Sucesso!', time() + 2, '/');
                 }
               
             } catch (\Throwable $th) {
-                    setcookie('mensagem_erro', 'Curso inexistente ou já deletado!', time() + 2, '/');
+                    setcookie('mensagem_erro', 'Erro: '. $th->getMessage(), time() + 2, '/');
             }
         }
         header('Location: /cursos');

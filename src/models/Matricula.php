@@ -1,14 +1,20 @@
 <?php
     namespace Projeto\Models;
+
+    use Projeto\Models\Aluno;
+    use Projeto\Models\Curso;
+    use Projeto\Models\dao\AlunoDAO;
+    use Projeto\Models\dao\CursoDAO;
+
     Class Matricula{
 
         private $id;
-        private $id_aluno;
-        private $id_curso;
+        private $aluno_id;
+        private $curso_id;
 
         public function __construct() {
-            $this->id_aluno = 0;
-            $this->id_curso = 0;
+            $this->aluno_id = 0;
+            $this->curso_id = 0;
         }
 
         public function __set($atributo, $valor){
@@ -20,29 +26,20 @@
         }
 
         public function buscarNomeAluno(){
-            foreach($_SESSION['alunos'] as $aluno){
-                if($aluno->__get('id') == $this->id_aluno){
-                    return $aluno->__get('nome_aluno');
-                }
-            }
-            return '';
+            
+            return AlunoDAO::buscarNomeAlunoById($this->aluno_id);
+
         }   
 
         public function buscarCursoNome(){
-            foreach($_SESSION['cursos'] as $curso){
-                if($curso->__get('id') == $this->id_curso){
-                    return $curso->__get('nome_curso');
-                }
-            }
-            return '';
+            
+            return CursoDAO::buscarNomeCursoById($this->curso_id);
+
         }
 
         public function buscarCargaHoraria(){
-            foreach($_SESSION['cursos'] as $curso){
-                if($curso->__get('id') == $this->id_curso){
-                    return $curso->__get('carga_horaria');
-                }
-            }
-            return '';
+
+            return CursoDAO::buscarCargaHorariaById($this->curso_id);
+
         }
     }

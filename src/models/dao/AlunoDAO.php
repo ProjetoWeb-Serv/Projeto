@@ -44,7 +44,16 @@ class AlunoDAO {
         $pdo = Connection::conectar();
         $stmt = $pdo->prepare("SELECT * FROM alunos WHERE id = ?");
         $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            $Aluno = new Aluno();
+            $Aluno->__set('id', $result['id']);
+            $Aluno->__set('nome_aluno', $result['nome_aluno']);
+            $Aluno->__set('data_nascimento', $result['data_nascimento']);
+            return $Aluno;
+        }
+
+        return null;
     }
 
     // 🔹 UPDATE
@@ -65,4 +74,17 @@ class AlunoDAO {
         $stmt = $pdo->prepare("DELETE FROM alunos WHERE id = ?");
         return $stmt->execute([$id]);
     }
+
+    public static function buscarNomeAlunoById(int $id){
+            $pdo = Connection::conectar();
+            $stmt = $pdo->prepare("SELECT nome_aluno FROM alunos WHERE id = ?");
+            $stmt->execute([$id]);
+            $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            if($row){
+                return $row['nome_aluno'];
+            }
+
+            return '';
+        }
 }
