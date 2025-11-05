@@ -11,11 +11,11 @@
 
     $acao = $rotas[1] ?? 'listar';
 
-    $controller = "controllers/$recurso.controller.php";
+    $controller = "src/controllers/$recurso.controller.php";
 
     if(file_exists($controller)){
         require($controller);
     } else {
-        require("controllers/404.controller.php");
+        require("src/controllers/404.controller.php");
     }
 ?>

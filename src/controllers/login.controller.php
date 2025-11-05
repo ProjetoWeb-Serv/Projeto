@@ -6,37 +6,27 @@
         exit();
     }
 
-
     if($acao != 'autenticar'){
 
         $acao = 'login';
 
     }else{
 
-        $nome = $_POST['nome'];
-        $senha = $_POST['senha'];
-
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-            $Usuario_encontrado = false;
-            require_once('models/Usuario.php');
+            require_once('src/models/Usuario.php');
+            require_once('src/models/dao/UsuarioDAO.php');
 
-            foreach($Usuarios[0] as $usuario){
-                if($usuario->__get('nome') === $nome && $usuario->__get('senha') === $senha){
-                    $_SESSION['logado'] = true;
-                    $_SESSION['usuario'] = $usuario->__get('nome');
-                    $_SESSION['role'] = $usuario->__get('role');
-                    setcookie('mensagem', 'Login efetuado!', time() + 2, '/');
-                    $Usuario_encontrado = true;
-                    header('Location: /alunos');
-                    exit();
-                }
-            }
+            $nome = $_POST['nome'] ?? '';
+            $senha = $_POST['senha'] ?? '';
+            
+            if(Projeto\UsuarioDAO::login($nome, $senha)){
+                setcookie('mensagem', 'Login realizado com sucesso!', time() + 2, '/');
+                header('Location: /alunos');
 
-            if(!$Usuario_encontrado){
-                setcookie('mensagem_erro', 'Usuário ou senha incorretos!', time() + 2, '/');
+            }else{
+                setcookie('mensagem_erro', 'Nome ou senha inválidos!', time() + 2, '/');
                 header('Location: /login');
-                exit();
             }
         }
     }
