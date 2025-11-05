@@ -1,7 +1,5 @@
 <?php
-    namespace Projeto;
-
-    use Matricula;
+    use Projeto\Models\Matricula;
 
     if(!isset($_SESSION['logado']) || $_SESSION['logado'] !== true){
         header('Location: /login');

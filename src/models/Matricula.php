@@ -1,5 +1,5 @@
 <?php
-    require_once('Curso.php');    
+    namespace Projeto\Models;
     Class Matricula{
 
         private $id;

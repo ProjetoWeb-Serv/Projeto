@@ -1,4 +1,6 @@
-<?php  
+<?php 
+
+    namespace Projeto\Models;
     class Usuario{
         private $role;
         private $nome;

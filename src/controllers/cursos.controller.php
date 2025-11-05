@@ -1,6 +1,5 @@
 <?php
-    namespace Projeto;
-    use Curso;
+    use Projeto\Models\Curso;
 
     if(!isset($_SESSION['logado']) || $_SESSION['logado'] !== true){
         header('Location: /login');
