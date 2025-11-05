@@ -1,5 +1,5 @@
 <?php
-    require_once('models/Aluno.php');
+    use Projeto\Aluno;
 
     if(!isset($_SESSION['logado']) || $_SESSION['logado'] !== true){
         header('Location: /login');

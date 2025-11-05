@@ -1,0 +1,9 @@
+{
+    "name": "ryzen5/projeto",
+    "autoload": {
+        "psr-4": {
+            "Projeto\\": "src/"
+        }
+    },
+    "require": {}
+}

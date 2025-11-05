@@ -1,17 +1,8 @@
 <?php 
-
-    require_once 'models/Curso.php';
-    require_once 'models/Aluno.php';
-    require_once 'models/Matricula.php';
-    require_once 'models/Usuario.php';
-
+    require 'vendor/autoload.php';
+    
     session_start();
-
-    require_once 'data/usuarios.php';
-    include_once 'data/alunos.php';
-    include_once 'data/matriculas.php';
-    include_once 'data/cursos.php';
-
+    
     $pagina = substr($_SERVER['REQUEST_URI'], 1);  
     $rotas = explode('/', $pagina);
         

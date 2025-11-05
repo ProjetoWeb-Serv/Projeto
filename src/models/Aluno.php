@@ -1,5 +1,5 @@
 <?php
-
+namespace Projeto;
     class Aluno {
 
         private $id;

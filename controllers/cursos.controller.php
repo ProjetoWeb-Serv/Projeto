@@ -1,5 +1,7 @@
 <?php
-    
+    namespace Projeto;
+    use Curso;
+
     if(!isset($_SESSION['logado']) || $_SESSION['logado'] !== true){
         header('Location: /login');
         exit();
@@ -14,7 +16,6 @@
     }else if($acao == 'gravar'){
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            require_once __DIR__ . '/../models/Curso.php'; 
             
             if(!isset($_SESSION['cursos'])){
                 $_SESSION['cursos'] = [];

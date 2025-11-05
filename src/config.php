@@ -1,5 +1,9 @@
 <?php
 
+namespace Projeto;
+
+use PDO;
+
 Class Connection{
     private static $db;
     
