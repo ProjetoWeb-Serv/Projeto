@@ -1,0 +1,44 @@
+.db-error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.db-error-box {
+    background-color: #1e293b;
+    padding: 40px 50px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    max-width: 400px;
+}
+
+.db-error-box h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #38bdf8;
+}
+
+.db-error-box p {
+    font-size: 1rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+    margin-bottom: 25px;
+}
+
+.db-error-box button {
+    background-color: #38bdf8;
+    color: #0f172a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.db-error-box button:hover {
+    background-color: #0ea5e9;
+}

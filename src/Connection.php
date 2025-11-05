@@ -17,7 +17,9 @@ Class Connection{
             }
             return self::$db;
         } catch (\Throwable $th) {
+
             die("Error de conexão: " . $th->getMessage());
+            header('Location: /errorBd');
         }
 
     } 
