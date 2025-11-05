@@ -7,7 +7,7 @@ use Projeto\Models\Curso;
 class CursoDAO {
      //crud
         
-        public static function create(Curso $curso){
+        public static function save(Curso $curso){
 
             $pdo = Connection::conectar();
             if($curso->id == null)
@@ -17,40 +17,33 @@ class CursoDAO {
 
                 $stmt->execute([$curso->__get('nome_curso'), $curso->__get('carga_horaria')]);
             }
-            else
-            {
-            //atualização
-                $stmt = $pdo->prepare("UPDATE cursos SET nome_curso = ?, carga_horaria = ? WHERE id = ?");
-
-                 $stmt->execute([$curso->nome_curso, $curso->carga_horaria, $curso->id]);
-            }
         }
 
-        public function listAll(){
+        public static function listAll(){
 
             $pdo = Connection::conectar();
-            $stmt = $pdo->query("SELECT * FROM cursos");
+            $stmt = $pdo->query("SELECT id, nome_curso, carga_horaria FROM cursos");
             $cursos = [];
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             
-            while($row = $stmt->fetch(\PDO::FETCH_ASSOC)){
+           foreach($result as $row){
                 $curso = new Curso();
                 $curso->__set('id', $row['id']);
                 $curso->__set('nome_curso', $row['nome_curso']);
                 $curso->__set('carga_horaria', $row['carga_horaria']);
                 $cursos[] = $curso;
             }
-
             return $cursos;
         }
 
-        public function delete(int $id):bool{
+        public static function delete(int $id):bool{
 
             $pdo = Connection::conectar();
             $stmt = $pdo->prepare("DELETE FROM cursos WHERE id = ?");
             return $stmt->execute([$id]);
         }
 
-        public function findById(int $id){
+        public static function findById(int $id){
 
             $pdo = Connection::conectar();
             $stmt = $pdo->prepare("SELECT * FROM cursos WHERE id = ?");
@@ -60,12 +53,25 @@ class CursoDAO {
 
             if($row){
                 $curso = new Curso();
+                $curso->__set('id', $row['id']);
                 $curso->__set('nome_curso', $row['nome_curso']);
                 $curso->__set('carga_horaria', $row['carga_horaria']);
                 return $curso;
             }
 
             return null;
+        }
+
+        public static function update(Curso $curso):bool{
+
+            $pdo = Connection::conectar();
+            $sql = "UPDATE cursos SET nome_curso = ?, carga_horaria = ? WHERE id = ?";
+            $stmt = $pdo->prepare($sql);
+            return $stmt->execute([
+                $curso->__get('nome_curso'),
+                $curso->__get('carga_horaria'),
+                $curso->__get('id')
+            ]);
         }
     
     }
