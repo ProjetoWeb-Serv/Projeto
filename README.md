@@ -78,6 +78,9 @@ Antes de executar o projeto, certifique-se de ter instalado:
 php -v
 
 ```
+
+---
+
 ### 🧰 3. Instalar o Composer
 
 Baixe o instalador do Composer:
@@ -89,6 +92,8 @@ Após instalar, verifique no terminal:
 
         composer -V
 
+---
+
 ### 📦 4. Instalar as dependências do projeto
 
 No terminal, dentro da pasta do projeto, execute:
@@ -97,7 +102,9 @@ No terminal, dentro da pasta do projeto, execute:
 
 Isso instalará o autoload do projeto e criará a pasta /vendor.
 
-### 🌐 6. Iniciar o Servidor PHP
+---
+
+### 🌐 5. Iniciar o Servidor PHP
 
 Agora, dentro da pasta do projeto, execute:
 
@@ -108,6 +115,8 @@ O servidor embutido do PHP será iniciado.
 Abra o navegador e acesse:
 
 👉 http://localhost:8080
+
+---
 
 ### 🛠️ Tecnologias Utilizadas
 
@@ -120,6 +129,8 @@ Abra o navegador e acesse:
         HTML/CSS
 
         PDO
+
+---
 
 ### 👨‍💻 Desenvolvido por
 
